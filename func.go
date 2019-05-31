@@ -4,10 +4,9 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
-
-	"math/rand"
 
 	"github.com/greymd/ojichat/generator"
 	"github.com/nlopes/slack"
@@ -28,7 +27,6 @@ func Ojibot(w http.ResponseWriter, r *http.Request) {
 			},
 		))
 	if err != nil {
-		log.Printf("SLACK_VERIFICATION_TOKEN: %v", os.Getenv("SLACK_VERIFICATION_TOKEN"))
 		log.Printf("error: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
