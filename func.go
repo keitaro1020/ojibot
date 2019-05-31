@@ -63,6 +63,11 @@ func Ojibot(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 
+			tname := user.Profile.DisplayName
+			if len(tname) == 0 {
+				tname = user.Name
+			}
+
 			en := rand.Intn(5)
 			if en < 1 {
 				en = 1
@@ -70,7 +75,7 @@ func Ojibot(w http.ResponseWriter, r *http.Request) {
 			pn := rand.Intn(3)
 
 			message, err := generator.Start(generator.Config{
-				TargetName:        user.Profile.DisplayName,
+				TargetName:        tname,
 				EmojiNum:          en,
 				PunctiuationLebel: pn,
 			})
